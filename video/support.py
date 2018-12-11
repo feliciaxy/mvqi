@@ -31,7 +31,7 @@ def getURLContent(url):
             #page = urllib2.urlopen(req)
             page = urllib.request.urlopen(url = url)
             content = page.read()
-        except urllib.error as e:
+        except urllib.error.HTTPError as e:
             if e.code == 404:
                 return ""
             flag = 0
