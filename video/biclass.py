@@ -222,6 +222,11 @@ class Tag():
         self.liked = None
         self.hated = None
 
+class BaiduVote():
+    def __init__(self):
+        self.name = None
+        self.vote = None
+
 def to_video_dict(video1):
     return {
         'aid': video1.aid,

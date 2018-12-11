@@ -53,20 +53,20 @@ def extract_user_info_by_mid(mid):
     html = response.json()
     user.mid = html['data']['card']['mid']
     user.name = html['data']['card']['name']
-    user.isApproved = html['data']['card']['approve']
-    user.sex = html['data']['card']['sex']
-    user.rank = html['data']['card']['rank']
-    user.avatar = html['data']['card']['face']
-    user.DisplayRank = html['data']['card']['DisplayRank']
-    user.place = html['data']['card']['place']
-    user.description = html['data']['card']['description']
+    #user.isApproved = html['data']['card']['approve']
+    #user.sex = html['data']['card']['sex']
+    #user.rank = html['data']['card']['rank']
+    #user.avatar = html['data']['card']['face']
+    #user.DisplayRank = html['data']['card']['DisplayRank']
+    #user.place = html['data']['card']['place']
+    #user.description = html['data']['card']['description']
     user.fans = html['data']['card']['fans']
-    user.friend = html['data']['card']['friend']
+    #user.friend = html['data']['card']['friend']
     user.follow = html['data']['card']['attention']
     user.article = html['data']['archive_count']
-    user.message = html['message']
+    #user.message = html['message']
     user.levelInfo = html['data']['card']['level_info']['current_level']
-    user.vipType = html['data']['card']['vip']['vipType']
+    #user.vipType = html['data']['card']['vip']['vipType']
     url = "https://api.bilibili.com/x/space/upstat?mid=%s" % (mid)
     response = requests.get(url, headers=header)
     response.encoding = 'utf-8'
@@ -75,7 +75,21 @@ def extract_user_info_by_mid(mid):
     user.totalarticleView = html['data']['article']['view']
     return user
 
-def get_user_followerList(mid,page, numberPerPage):
+def extract_upInfo(aid):
+    aid = str(aid)
+    url = 'https://www.bilibili.com/video/av'+aid
+    header = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36'}
+    response = requests.get(url, headers=header)
+    response.encoding = 'utf-8'
+    html = response.text
+    soup = BeautifulSoup(html, "html.parser")
+    up_name = soup.find('a', class_='name').string
+    up_url = 'https:' + soup.find('a', class_='name')['href']
+    up_id = str(soup.find('a', class_='name')['href']).split('/')[-1]
+    user = extract_user_info_by_mid(up_id)
+    return user
+
+def get_user_followingList(mid,page, numberPerPage):
     mid = str(mid)
     page = str(page)
     numberPerPage = str(numberPerPage)
@@ -101,6 +115,33 @@ def get_user_followerList(mid,page, numberPerPage):
         followList[i].avatar = user_avatar[i]
         followList[i].sign = user_sign[i]
     return followList
+
+def get_user_followerList(mid,page, numberPerPage):
+    mid = str(mid)
+    page = str(page)
+    numberPerPage = str(numberPerPage)
+    header = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36'}
+    url = "https://api.bilibili.com/x/relation/followers?vmid=%s&pn=%s&ps=%s" % (mid, page, numberPerPage)
+    response = requests.get(url, headers=header)
+    response.encoding = 'utf-8'
+    html = response.json()
+    followList_info = html['data']['list']
+    user_mid = [x['mid'] for x in followList_info]
+    user_name = [x['uname'] for x in followList_info]
+    user_mtime = [datetime.datetime.fromtimestamp(x['mtime']).strftime('%Y-%m-%d %H:%M:%S') for x in followList_info]
+    user_tag = [x['tag'] for x in followList_info]
+    user_avatar = [x['face'] for x in followList_info]
+    user_sign = [x['sign'] for x in followList_info]
+    numberPerPage = int(numberPerPage)
+    fansList = [User() for i in range(numberPerPage)]
+    for i in range(numberPerPage):
+        fansList[i].mid = user_mid[i]
+        fansList[i].name = user_name[i]
+        fansList[i].mtime = user_mtime[i]
+        fansList[i].tag = user_tag[i]
+        fansList[i].avatar = user_avatar[i]
+        fansList[i].sign = user_sign[i]
+    return fansList
 
 def extract_some_comments(aid,page,order):
     aid = aid
@@ -197,6 +238,15 @@ def extract_video_info(aid):
     video.upID = up_id
     video.now = datetime.datetime.now()
     video.score = (video.commentNumber)*10+(video.coin)*20+(video.shoucang)*10+(video.danmu)*5+(video.guankan)*0.5
+    url = 'https://api.bilibili.com/x/web-interface/view/detail?aid=' + aid
+    response = requests.get(url, headers=header)
+    response.encoding = 'utf-8'
+    html = response.json()
+    video.title = html['data']['View']['title']
+    video.tid = html['data']['View']['tid']
+    video.tname = html['data']['View']['tname']
+    video.date = datetime.datetime.fromtimestamp(html['data']['View']['pubdate']).strftime('%Y-%m-%d %H:%M:%S')
+    video.duration = html['data']['View']['duration']
     return video
 
 def extract_video_tag(aid):
@@ -473,8 +523,9 @@ def get_latestVideoInfo_about_MMQ_per_page(page):
     videoAIDList = []
     for i in range(len(av)):
         aid = av[i][2:]
-        video = extract_video_info(aid)
-        videoAIDList.append(video.aid)
+        #video = extract_video_info(aid)
+        #videoAIDList.append(video.aid)
+        videoAIDList.append(aid)
     return videoAIDList
 
 def get_latestVideoInfo_about_MMQ():
@@ -483,6 +534,78 @@ def get_latestVideoInfo_about_MMQ():
         videoAIDList = get_latestVideoInfo_about_MMQ_per_page(i)
         videoAIDListALL.extend(videoAIDList)
     return videoAIDListALL
+
+def get_totalRankVideoInfo_about_MMQ_per_page(page):
+    page = str(page)
+    url = "https://search.bilibili.com/all?keyword=%E5%AD%9F%E7%BE%8E%E5%B2%90&order=totalrank&duration=0&tids_1=0&page=" + page
+    content = support.getURLContent(url)
+    html_info = html.fromstring(content)
+    span = [td.text for td in html_info.xpath("//span")]
+    span = [str(i) for i in span]
+    sub = 'av'
+    av = [s for s in span if sub in s]
+    videoAIDList = []
+    for i in range(len(av)):
+        aid = av[i][2:]
+        #video = extract_video_info(aid)
+        #videoAIDList.append(video.aid)
+        videoAIDList.append(aid)
+    return videoAIDList
+
+def get_totalRankVideoInfo_about_MMQ():
+    videoAIDListALL=[]
+    for i in range(1,3):
+        videoAIDList = get_totalRankVideoInfo_about_MMQ_per_page(i)
+        videoAIDListALL.extend(videoAIDList)
+    return videoAIDListALL
+
+def get_clickVideoInfo_about_MMQ_per_page(page):
+    page = str(page)
+    url = "https://search.bilibili.com/all?keyword=%E5%AD%9F%E7%BE%8E%E5%B2%90&order=click&duration=0&tids_1=0&page=" + page
+    content = support.getURLContent(url)
+    html_info = html.fromstring(content)
+    span = [td.text for td in html_info.xpath("//span")]
+    span = [str(i) for i in span]
+    sub = 'av'
+    av = [s for s in span if sub in s]
+    videoAIDList = []
+    for i in range(len(av)):
+        aid = av[i][2:]
+        #video = extract_video_info(aid)
+        #videoAIDList.append(video.aid)
+        videoAIDList.append(aid)
+    return videoAIDList
+
+def get_clickVideoInfo_about_MMQ():
+    videoAIDListALL=[]
+    for i in range(1,3):
+        videoAIDList = get_clickVideoInfo_about_MMQ_per_page(i)
+        videoAIDListALL.extend(videoAIDList)
+    return videoAIDListALL
+
+def get_allUpInfo():
+    videoAIDListALL = get_latestVideoInfo_about_MMQ()
+    upInfoList = []
+    for i in videoAIDListALL:
+        user = extract_upInfo(i)
+        upInfoList.append(user)
+    return upInfoList
+
+def get_baidu():
+    url = "https://mbd.baidu.com/webpage?type=starhit&action=home&format=json&uk=2IhtQWM6eZUH0JR86UqkcQ&queryType=femaleStar"
+    header = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36'}
+    response = requests.get(url, headers=header)
+    response.encoding = 'utf-8'
+    html = response.json()
+    pageInfo = html['data']['femaleStar']
+    name = [x['name'] for x in pageInfo]
+    vote = [x['vote'] for x in pageInfo]
+    number = len(name)
+    Baiduvote = [biclass.BaiduVote() for i in range(number)]
+    for i in range(number):
+        Baiduvote[i].name = name[i]
+        Baiduvote[i].vote = vote[i]
+    return Baiduvote
 
 #############################Get Number of People Online Now ############################################
 def online_number():

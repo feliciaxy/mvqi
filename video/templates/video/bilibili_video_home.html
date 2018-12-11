@@ -3,6 +3,7 @@
 <h1>B站视频信息</h1>
 <p><font size="4" color="red">使用细则：1. 点击av号可直接跳转b站观看该视频， 点击up主ID可直接跳转up主空间查看其它视频</font></p>
 <p><font size="4" color="red" style="margin-left:5em;">2. 请点击表头进行排序， 点击AV号则是以发布时间倒叙</font></p>
+<p><font size="4" color="red">点击右方链接查看可视化数据:</font><a href='https://public.tableau.com/profile/1023mmq#!/vizhome/b_21/b?publish=yes'> 可视化数据链接</a></p>
 <style>
     table {
         border-spacing: 0;
@@ -53,89 +54,99 @@
         <thead>
             <tr>
               <th onclick="sortTable(0)"><font size="2">AV号</font></th>
-              <th onclick="sortTable(1)"><font size="2">综合评分</font></th>
-              <th onclick="sortTable(2)"><font size="2">半小时综合评分变化</font></th>
-              <th onclick="sortTable(3)"><font size="2">三小时综合评分变化</font></th>
-              <th onclick="sortTable(4)"><font size="2">一天综合评分变化</font></th>
-              <th onclick="sortTable(5)"><font size="2">up主名</font></th> 
-              <th onclick="sortTable(6)"><font size="2">up主ID</font></th>
-              <th onclick="sortTable(7)"><font size="2">播放量</font></th>
-              <th onclick="sortTable(8)"><font size="2">半小时播放量变化</font></th>
-              <th onclick="sortTable(9)"><font size="2">三小时播放量变化</font></th>
-              <th onclick="sortTable(10)"><font size="2">一天播放量变化</font></th>
-              <th onclick="sortTable(11)"><font size="2">点赞数</font></th>
-              <th onclick="sortTable(12)"><font size="2">半小时点赞变化</font></th>
-              <th onclick="sortTable(13)"><font size="2">三小时点赞变化</font></th>
-              <th onclick="sortTable(14)"><font size="2">一天点赞变化</font></th>
-              <th onclick="sortTable(15)"><font size="2">收藏数</font></th>
-              <th onclick="sortTable(16)"><font size="2">半小时收藏变化</font></th>
-              <th onclick="sortTable(17)"><font size="2">三小时收藏变化</font></th>
-              <th onclick="sortTable(18)"><font size="2">一天收藏变化</font></th>
-              <th onclick="sortTable(19)"><font size="2">投币数</font></th>
-              <th onclick="sortTable(20)"><font size="2">半小时投币变化</font></th>
-              <th onclick="sortTable(21)"><font size="2">三小时投币变化</font></th>
-              <th onclick="sortTable(22)"><font size="2">一天投币变化</font></th>
-              <th onclick="sortTable(23)"><font size="2">评论数</font></th>
-              <th onclick="sortTable(24)"><font size="2">半小时评论变化</font></th>
-              <th onclick="sortTable(25)"><font size="2">三小时评论变化</font></th>
-              <th onclick="sortTable(26)"><font size="2">一天评论变化</font></th>
-              <th onclick="sortTable(27)"><font size="2">弹幕数</font></th>
-              <th onclick="sortTable(28)"><font size="2">半小时弹幕变化</font></th>
-              <th onclick="sortTable(29)"><font size="2">三小时弹幕变化</font></th>
-              <th onclick="sortTable(30)"><font size="2">一天弹幕变化</font></th>
-              <th onclick="sortTable(31)"><font size="2">分享数</font></th>
-              <th onclick="sortTable(32)"><font size="2">半小时分享变化</font></th>
-              <th onclick="sortTable(33)"><font size="2">三小时分享变化</font></th>
-              <th onclick="sortTable(34)"><font size="2">一天分享变化</font></th>
-              <th onclick="sortTable(35)"><font size="2">当前排名</font></th>
-              <th onclick="sortTable(36)"><font size="2">半小时当前排名变化</font></th>
-              <th onclick="sortTable(37)"><font size="2">三小时当前排名变化</font></th>
-              <th onclick="sortTable(38)"><font size="2">一天当前排名变化</font></th>
-              <th onclick="sortTable(39)"><font size="2">历史排名</font></th>
-              <th onclick="sortTable(40)"><font size="2">更新时间</font></th>
+              <th onclick="sortTable(1)"><font size="2">标题</font></th>
+              <th onclick="sortTable(2)"><font size="2">分区号</font></th>
+              <th onclick="sortTable(3)"><font size="2">分区名</font></th>
+              <th onclick="sortTable(4)"><font size="2">上传日期</font></th>
+              <th onclick="sortTable(5)"><font size="2">时长(秒)</font></th>
+              <th onclick="sortTable(6)"><font size="2">综合评分</font></th>
+              <th onclick="sortTable(7)"><font size="2">一小时综合评分变化</font></th>
+              <th onclick="sortTable(8)"><font size="2">四小时综合评分变化</font></th>
+              <th onclick="sortTable(9)"><font size="2">一天综合评分变化</font></th>
+              <th onclick="sortTable(10)"><font size="2">up主名</font></th> 
+              <th onclick="sortTable(11)"><font size="2">up主ID</font></th>
+              <th onclick="sortTable(12)"><font size="2">播放量</font></th>
+              <th onclick="sortTable(13)"><font size="2">一小时播放量变化</font></th>
+              <th onclick="sortTable(14)"><font size="2">四小时播放量变化</font></th>
+              <th onclick="sortTable(15)"><font size="2">一天播放量变化</font></th>
+              <th onclick="sortTable(16)"><font size="2">点赞数</font></th>
+              <th onclick="sortTable(17)"><font size="2">一小时点赞变化</font></th>
+              <th onclick="sortTable(18)"><font size="2">四小时点赞变化</font></th>
+              <th onclick="sortTable(19)"><font size="2">一天点赞变化</font></th>
+              <th onclick="sortTable(20)"><font size="2">收藏数</font></th>
+              <th onclick="sortTable(21)"><font size="2">一小时收藏变化</font></th>
+              <th onclick="sortTable(22)"><font size="2">四小时收藏变化</font></th>
+              <th onclick="sortTable(23)"><font size="2">一天收藏变化</font></th>
+              <th onclick="sortTable(24)"><font size="2">投币数</font></th>
+              <th onclick="sortTable(25)"><font size="2">一小时投币变化</font></th>
+              <th onclick="sortTable(26)"><font size="2">四小时投币变化</font></th>
+              <th onclick="sortTable(27)"><font size="2">一天投币变化</font></th>
+              <th onclick="sortTable(28)"><font size="2">评论数</font></th>
+              <th onclick="sortTable(29)"><font size="2">一小时评论变化</font></th>
+              <th onclick="sortTable(30)"><font size="2">四小时评论变化</font></th>
+              <th onclick="sortTable(31)"><font size="2">一天评论变化</font></th>
+              <th onclick="sortTable(32)"><font size="2">弹幕数</font></th>
+              <th onclick="sortTable(33)"><font size="2">一小时弹幕变化</font></th>
+              <th onclick="sortTable(34)"><font size="2">四小时弹幕变化</font></th>
+              <th onclick="sortTable(35)"><font size="2">一天弹幕变化</font></th>
+              <th onclick="sortTable(36)"><font size="2">分享数</font></th>
+              <th onclick="sortTable(37)"><font size="2">一小时分享变化</font></th>
+              <th onclick="sortTable(38)"><font size="2">四小时分享变化</font></th>
+              <th onclick="sortTable(39)"><font size="2">一天分享变化</font></th>
+              <th onclick="sortTable(40)"><font size="2">当前排名</font></th>
+              <th onclick="sortTable(41)"><font size="2">一小时当前排名变化</font></th>
+              <th onclick="sortTable(42)"><font size="2">四小时当前排名变化</font></th>
+              <th onclick="sortTable(43)"><font size="2">一天当前排名变化</font></th>
+              <th onclick="sortTable(44)"><font size="2">历史排名</font></th>
+              <th onclick="sortTable(45)"><font size="2">更新时间</font></th>
             </tr>
         </thead>
         <tbody>
         {% for post in posts %}
             <tr>
-              <td><a href ='https://www.bilibili.com/video/av{{ post.aid }}/'>{{ post.aid }}</a></td>
-              <td>{{ post.score }}</td> 
+              <td><a href ='https://www.bilibili.com/video/av{{ post.aid }}/'>{{ post.aid }}</a></td> 
+              <td>{{ post.title }}</td> 
+              <td>{{ post.tid }}</td> 
+              <td>{{ post.tname }}</td> 
+              <td>{{ post.date }}</td> 
+              <td>{{ post.duration }}</td>
+              <td>{{ post.score }}</td>
               <td>{{ post.change_score }}</td>
-              <td>{{ post.change_score_3hr }}</td>
+              <td>{{ post.change_score_4hr }}</td>
               <td>{{ post.change_score_24hr }}</td>
               <td>{{ post.upName }}</td>
               <td><a href ='https://space.bilibili.com/{{ post.upID }}/'>{{ post.upID }}</a></td>
               <td>{{ post.latest_guankan }}</td>
               <td>{{ post.change_guankan }}</td>
-              <td>{{ post.change_guankan_3hr }}</td>
+              <td>{{ post.change_guankan_4hr }}</td>
               <td>{{ post.change_guankan_24hr }}</td>
               <td>{{ post.latest_like }}</td>
               <td>{{ post.change_like }}</td>
-              <td>{{ post.change_like_3hr }}</td>
+              <td>{{ post.change_like_4hr }}</td>
               <td>{{ post.change_like_24hr }}</td>
               <td>{{ post.latest_shoucang }}</td>
               <td>{{ post.change_shoucang }}</td>
-              <td>{{ post.change_shoucang_3hr }}</td>
+              <td>{{ post.change_shoucang_4hr }}</td>
               <td>{{ post.change_shoucang_24hr }}</td>
               <td>{{ post.latest_coin }}</td>
               <td>{{ post.change_coin }}</td>
-              <td>{{ post.change_coin_3hr }}</td>
+              <td>{{ post.change_coin_4hr }}</td>
               <td>{{ post.change_coin_24hr }}</td>
               <td>{{ post.latest_share }}</td>
               <td>{{ post.change_share }}</td>
-              <td>{{ post.change_share_3hr }}</td>
+              <td>{{ post.change_share_4hr }}</td>
               <td>{{ post.change_share_24hr }}</td>
               <td>{{ post.latest_commentNumber }}</td>
               <td>{{ post.change_commentNumber }}</td>
-              <td>{{ post.change_commentNumber_3hr }}</td>
+              <td>{{ post.change_commentNumber_4hr }}</td>
               <td>{{ post.change_commentNumber_24hr }}</td>
               <td>{{ post.latest_danmu }}</td>
               <td>{{ post.change_danmu }}</td>
-              <td>{{ post.change_danmu_3hr }}</td>
+              <td>{{ post.change_danmu_4hr }}</td>
               <td>{{ post.change_danmu_24hr }}</td>
               <td>{{ post.latest_nowRank }}</td>
               <td>{{ post.change_nowRank }}</td>
-              <td>{{ post.change_nowRank_3hr }}</td>
+              <td>{{ post.change_nowRank_4hr }}</td>
               <td>{{ post.change_nowRank_24hr }}</td>
               <td>{{ post.latest_hisRank }}</td>
               <td>{{ post.data_posted|date:"r" }}</td>
@@ -145,50 +156,55 @@
         <tfoot>
             <tr>
                 <th onclick="sortTable(0)"><font size="2">AV号</font></th>
-                <th onclick="sortTable(1)"><font size="2">综合评分</font></th>
-                <th onclick="sortTable(2)"><font size="2">半小时综合评分变化</font></th>
-                <th onclick="sortTable(3)"><font size="2">三小时综合评分变化</font></th>
-                <th onclick="sortTable(4)"><font size="2">一天综合评分变化</font></th>
-                <th onclick="sortTable(5)"><font size="2">up主名</font></th> 
-                <th onclick="sortTable(6)"><font size="2">up主ID</font></th>
-                <th onclick="sortTable(7)"><font size="2">播放量</font></th>
-                <th onclick="sortTable(8)"><font size="2">半小时播放量变化</font></th>
-                <th onclick="sortTable(9)"><font size="2">三小时播放量变化</font></th>
-                <th onclick="sortTable(10)"><font size="2">一天播放量变化</font></th>
-                <th onclick="sortTable(11)"><font size="2">点赞数</font></th>
-                <th onclick="sortTable(12)"><font size="2">半小时点赞变化</font></th>
-                <th onclick="sortTable(13)"><font size="2">三小时点赞变化</font></th>
-                <th onclick="sortTable(14)"><font size="2">一天点赞变化</font></th>
-                <th onclick="sortTable(15)"><font size="2">收藏数</font></th>
-                <th onclick="sortTable(16)"><font size="2">半小时收藏变化</font></th>
-                <th onclick="sortTable(17)"><font size="2">三小时收藏变化</font></th>
-                <th onclick="sortTable(18)"><font size="2">一天收藏变化</font></th>
-                <th onclick="sortTable(19)"><font size="2">投币数</font></th>
-                <th onclick="sortTable(20)"><font size="2">半小时投币变化</font></th>
-                <th onclick="sortTable(21)"><font size="2">三小时投币变化</font></th>
-                <th onclick="sortTable(22)"><font size="2">一天投币变化</font></th>
-                <th onclick="sortTable(23)"><font size="2">评论数</font></th>
-                <th onclick="sortTable(24)"><font size="2">半小时评论变化</font></th>
-                <th onclick="sortTable(25)"><font size="2">三小时评论变化</font></th>
-                <th onclick="sortTable(26)"><font size="2">一天评论变化</font></th>
-                <th onclick="sortTable(27)"><font size="2">弹幕数</font></th>
-                <th onclick="sortTable(28)"><font size="2">半小时弹幕变化</font></th>
-                <th onclick="sortTable(29)"><font size="2">三小时弹幕变化</font></th>
-                <th onclick="sortTable(30)"><font size="2">一天弹幕变化</font></th>
-                <th onclick="sortTable(31)"><font size="2">分享数</font></th>
-                <th onclick="sortTable(32)"><font size="2">半小时分享变化</font></th>
-                <th onclick="sortTable(33)"><font size="2">三小时分享变化</font></th>
-                <th onclick="sortTable(34)"><font size="2">一天分享变化</font></th>
-                <th onclick="sortTable(35)"><font size="2">当前排名</font></th>
-                <th onclick="sortTable(36)"><font size="2">半小时当前排名变化</font></th>
-                <th onclick="sortTable(37)"><font size="2">三小时当前排名变化</font></th>
-                <th onclick="sortTable(38)"><font size="2">一天当前排名变化</font></th>
-                <th onclick="sortTable(39)"><font size="2">历史排名</font></th>
-                <th onclick="sortTable(40)"><font size="2">更新时间</font></th>
-                </tr>
-            </tfoot>
+                <th onclick="sortTable(1)"><font size="2">标题</font></th>
+                <th onclick="sortTable(2)"><font size="2">分区号</font></th>
+                <th onclick="sortTable(3)"><font size="2">分区名</font></th>
+                <th onclick="sortTable(4)"><font size="2">上传日期</font></th>
+                <th onclick="sortTable(5)"><font size="2">时长(秒)</font></th>
+                <th onclick="sortTable(6)"><font size="2">综合评分</font></th>
+                <th onclick="sortTable(7)"><font size="2">一小时综合评分变化</font></th>
+                <th onclick="sortTable(8)"><font size="2">四小时综合评分变化</font></th>
+                <th onclick="sortTable(9)"><font size="2">一天综合评分变化</font></th>
+                <th onclick="sortTable(10)"><font size="2">up主名</font></th> 
+                <th onclick="sortTable(11)"><font size="2">up主ID</font></th>
+                <th onclick="sortTable(12)"><font size="2">播放量</font></th>
+                <th onclick="sortTable(13)"><font size="2">一小时播放量变化</font></th>
+                <th onclick="sortTable(14)"><font size="2">四小时播放量变化</font></th>
+                <th onclick="sortTable(15)"><font size="2">一天播放量变化</font></th>
+                <th onclick="sortTable(16)"><font size="2">点赞数</font></th>
+                <th onclick="sortTable(17)"><font size="2">一小时点赞变化</font></th>
+                <th onclick="sortTable(18)"><font size="2">四小时点赞变化</font></th>
+                <th onclick="sortTable(19)"><font size="2">一天点赞变化</font></th>
+                <th onclick="sortTable(20)"><font size="2">收藏数</font></th>
+                <th onclick="sortTable(21)"><font size="2">一小时收藏变化</font></th>
+                <th onclick="sortTable(22)"><font size="2">四小时收藏变化</font></th>
+                <th onclick="sortTable(23)"><font size="2">一天收藏变化</font></th>
+                <th onclick="sortTable(24)"><font size="2">投币数</font></th>
+                <th onclick="sortTable(25)"><font size="2">一小时投币变化</font></th>
+                <th onclick="sortTable(26)"><font size="2">四小时投币变化</font></th>
+                <th onclick="sortTable(27)"><font size="2">一天投币变化</font></th>
+                <th onclick="sortTable(28)"><font size="2">评论数</font></th>
+                <th onclick="sortTable(29)"><font size="2">一小时评论变化</font></th>
+                <th onclick="sortTable(30)"><font size="2">四小时评论变化</font></th>
+                <th onclick="sortTable(31)"><font size="2">一天评论变化</font></th>
+                <th onclick="sortTable(32)"><font size="2">弹幕数</font></th>
+                <th onclick="sortTable(33)"><font size="2">一小时弹幕变化</font></th>
+                <th onclick="sortTable(34)"><font size="2">四小时弹幕变化</font></th>
+                <th onclick="sortTable(35)"><font size="2">一天弹幕变化</font></th>
+                <th onclick="sortTable(36)"><font size="2">分享数</font></th>
+                <th onclick="sortTable(37)"><font size="2">一小时分享变化</font></th>
+                <th onclick="sortTable(38)"><font size="2">四小时分享变化</font></th>
+                <th onclick="sortTable(39)"><font size="2">一天分享变化</font></th>
+                <th onclick="sortTable(40)"><font size="2">当前排名</font></th>
+                <th onclick="sortTable(41)"><font size="2">一小时当前排名变化</font></th>
+                <th onclick="sortTable(42)"><font size="2">四小时当前排名变化</font></th>
+                <th onclick="sortTable(43)"><font size="2">一天当前排名变化</font></th>
+                <th onclick="sortTable(44)"><font size="2">历史排名</font></th>
+                <th onclick="sortTable(45)"><font size="2">更新时间</font></th>
+            </tr>
+        </tfoot>
     </table>
-    
+
 <script>
     function sortTable(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -205,7 +221,7 @@
                 x = rows[i].getElementsByTagName("TD")[n];
                 y = rows[i + 1].getElementsByTagName("TD")[n];
                 if (dir == "desc") {
-                    if (n == 0 || n == 5){
+                    if (n == 0 || n == 1 || n == 3 || n == 4 || n == 10){
                         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                             shouldSwitch= true;
                             break;
@@ -218,7 +234,7 @@
                         }
                     }  
                 } else if (dir == "asc") {
-                        if (n == 0 || n == 5){
+                        if (n == 0 || n == 1 || n == 3 || n == 4 || n == 10){
                             if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                                 shouldSwitch = true;
                                 break;
