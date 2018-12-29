@@ -736,9 +736,9 @@ def get_baiduvote_info():
         posts.append(sub_post)
     return posts
 
-posts = get_latest_video_info()
+#posts = get_latest_video_info()
 posts_totalRank = get_totalRank_video_info()
-posts_click = get_click_video_info()
+#posts_click = get_click_video_info()
 
 posts_baiduvote = get_baiduvote_info()
 
