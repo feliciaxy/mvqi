@@ -629,3 +629,6 @@ def baidu_vote_home(request):
         'posts': posts_baiduvote
     }
     return render(request, 'video/baidu_vote_home.html', context)
+
+def bilibili_good_video_home(request):
+    return render(request, 'video/bilibili_good_video_home.html')

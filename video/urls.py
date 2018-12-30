@@ -6,4 +6,5 @@ urlpatterns = [
     path('totalRank/', views.bilibili_totalRank_home, name='bilibili-totalRank-home'),
     path('click/', views.bilibili_click_home, name='bilibili-click-home'),
     path('vote/', views.baidu_vote_home, name='baidu-vote-home'),
+    path('goodvideo/', views.bilibili_good_video_home, name='bilibili-good-video-home'),
 ]
